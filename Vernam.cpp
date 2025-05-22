@@ -1,13 +1,13 @@
 #include <iostream>
 #include <string>
-#include <cstdlib> // Для srand и rand
+#include <cstdlib> // Г„Г«Гї srand ГЁ rand
 
 using namespace std;
 
-// Функция шифрования Вернамом с ключом (seed)
+// Г”ГіГ­ГЄГ¶ГЁГї ГёГЁГґГ°Г®ГўГ Г­ГЁГї Г‚ГҐГ°Г­Г Г¬Г®Г¬ Г± ГЄГ«ГѕГ·Г®Г¬ (seed)
 string VernamEncoded(const string& text, unsigned int key) {
     string encoded;
-    srand(key); // Инициализация генератора случайных чисел ключом
+    srand(key); // Г€Г­ГЁГ¶ГЁГ Г«ГЁГ§Г Г¶ГЁГї ГЈГҐГ­ГҐГ°Г ГІГ®Г°Г  Г±Г«ГіГ·Г Г©Г­Г»Гµ Г·ГЁГ±ГҐГ« ГЄГ«ГѕГ·Г®Г¬
     for (char ch : text) {
         char k = rand() % 256;
         encoded += ch ^ k;
@@ -15,10 +15,10 @@ string VernamEncoded(const string& text, unsigned int key) {
     return encoded;
 }
 
-// Функция дешифровки Вернамом с ключом (seed)
+// Г”ГіГ­ГЄГ¶ГЁГї Г¤ГҐГёГЁГґГ°Г®ГўГЄГЁ Г‚ГҐГ°Г­Г Г¬Г®Г¬ Г± ГЄГ«ГѕГ·Г®Г¬ (seed)
 string VernamDecoded(const string& encoded, unsigned int key) {
     string decoded;
-    srand(key); // Инициализация генератора тем же ключом
+    srand(key); // Г€Г­ГЁГ¶ГЁГ Г«ГЁГ§Г Г¶ГЁГї ГЈГҐГ­ГҐГ°Г ГІГ®Г°Г  ГІГҐГ¬ Г¦ГҐ ГЄГ«ГѕГ·Г®Г¬
     for (char ch : encoded) {
         char k = rand() % 256;
         decoded += ch ^ k;
@@ -28,86 +28,3 @@ string VernamDecoded(const string& encoded, unsigned int key) {
 
 
 
-//#include <iostream>
-//#include <string>
-//#include <cstdlib> // Для srand и rand
-//
-//using namespace std;
-//
-//string Vernam_encoding(string& text) {
-//    srand(0);
-//    string key = "";
-//    for (size_t i = 0; i < text.length(); ++i) {
-//        key += (char)(rand() % 256);
-//    }
-//    string newtext = "";
-//    for (size_t i = 0; i < text.length(); ++i) {
-//        newtext += (text[i] ^ key[i]);
-//    }
-//    return newtext;
-//}
-//
-//string Vernam_decoding(string& text) {
-//    srand(0);
-//    string key = "";
-//    for (size_t i = 0; i < text.length(); ++i) {
-//        key += (char)(rand() % 256);
-//    }
-//    string newtext = "";
-//    for (size_t i = 0; i < text.length(); ++i) {
-//        newtext += (text[i] ^ key[i]);
-//    }
-//    return newtext;
-//}
-
-//#include "Vernam.h"
-//
-//using namespace std;
-//
-//void Vernam_encoding(string& name) {
-//	srand(0);
-//	ifstream fout(name);
-//	ofstream fin("Encoded.txt");
-//	while (!fout.eof()) {
-//		string text = "";
-//		getline(fout, text);
-//		string key = "";
-//		int i = 0;
-//		for (i = 0; text[i] != '\0'; i++) {
-//			key += (char)(rand() % 255);
-//		}
-//		string newtext = "";
-//		for (i = 0; text[i] != '\0'; i++) {
-//			newtext += (text[i] ^ key[i]);
-//		}
-//		fin << newtext;
-//		if (!fout.eof()) {
-//			fin << endl;
-//		}
-//	}
-//	fout.ignore();
-//}
-//
-//void Vernam_decoding(string& name) {
-//	srand(0);
-//	ifstream fout(name);
-//	ofstream fin("Decoded.txt");
-//	while (!fout.eof()) {
-//		string text = "";
-//		getline(fout, text);
-//		string key = "";
-//		int i = 0;
-//		for (i = 0; text[i] != '\0'; i++) {
-//			key += (char)(rand() % 255);
-//		}
-//		string newtext = "";
-//		for (i = 0; text[i] != '\0'; i++) {
-//			newtext += (text[i] ^ key[i]);
-//		}
-//		fin << newtext;
-//		if (!fout.eof()) {
-//			fin << endl;
-//		}
-//	}
-//	fout.ignore();
-//}
